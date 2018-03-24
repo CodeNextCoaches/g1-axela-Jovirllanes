@@ -1,9 +1,9 @@
 (function () {
 
-  var input,
-      submit,
-      message,
-      advancedDiv,
+  var input = document.querySelector("#axela-input"),
+      submit = document.querySelector("#axela-submit"),
+      message = document.querySelector("#axela-message"),
+      advancedDiv = document.querySelector("#advanced"),
       errorText = "I don't understand you.",
       dunnoText = "I wasn't programmed to know that.",
       picture = null,
@@ -48,6 +48,47 @@
       the message element to errorText.
    */
 
+
+   function processInput() {
+     if(advancedDiv.contains(picture)) {
+       picture.removeChild();
+     }
+     var words = input.value.toLowerCase().trim().split(" ");
+     input.value = '';
+
+     if(words.length == 1) {
+       if(greetings.indexOf(words[0]) > -1) {
+         message.innerHTML = 'Greetings!';
+       } else {
+         message.innerHTML = errorText;
+       }
+     } else if (words.length >= 3) {
+       switch(words[0]) {
+         case "who":
+           who(words[1]);
+           break;
+         case "what":
+           what(words[1]);
+           break;
+         case "where":
+           where(words[1]);
+           break;
+         case "tell":
+           tell(words[1]);
+           break;
+         case "show":
+           show(words[1]);
+           break;
+         default:
+           message.innerHTML = errorText;
+       }
+     } else {
+       message.innerHTML = errorText;
+     }
+
+
+   }
+
   /*
    * who(word)
    * This function sets the innerHTML of the message element to specific text,
@@ -63,10 +104,59 @@
      doesn't know what they're referring to.)
    */
 
+   function who(word) {
+     switch(word) {
+       case 'are':
+         message.innerHTML = 'Im Kieto and Im your personal assistant';
+         break;
+       case 'is':
+         message.innerHTML = 'hhh';
+         break;
+       case 'leader':
+         message.innerHTML = 'Everyone can be a leader as long as your passionate';
+         break;
+       default:
+         message.innerHTML = dunnoText;
+     }
+   }
+
   /*
    * what(word)
    * See above.
    */
+   function what(word) {
+     switch(word) {
+       case 'you':
+         message.innerHTML = 'I am a bunch of code that is here to help you ';
+         break;
+       case '':
+         message.innerHTML = '';
+         break;
+       case 'cool':
+         message.innerHTML = 'Coach Wolf';
+         break;
+       default:
+         message.innerHTML = dunnoText;
+     }
+   }
+   function where(word) {
+     switch(word) {
+       case 'you':
+         message.innerHTML = 'I am Axela, of course';
+         break;
+       case 'me':
+         message.innerHTML = 'You are you';
+         break;
+       case 'cool':
+         message.innerHTML = 'Coach Wolf';
+         break;
+       default:
+         message.innerHTML = dunnoText;
+     }
+   }
+
+
+
 
   /*
    * where(word)
@@ -82,6 +172,12 @@
    * show(word)
    * See above.
    */
+
+  //  function doubleUp(num) {
+  //    console.log(num*2);
+  //  }
+   //
+  //  doubleUp(4);
 
 
 })();
